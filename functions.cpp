@@ -8,7 +8,7 @@ using namespace std;
 void sayHi(string name, int age)
 {
     cout << "Hello, dear " << name << endl;
-    cout<< "You are " << age << " years old." << endl;
+    cout<< "You are " << age << " years old." << endl << "OMG!";
 }
 
 int main()
