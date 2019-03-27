@@ -11,9 +11,9 @@ int main()
     {
         for ( int j = 0; j <= 1; j++)
         {
-            cout<<numberGrid[i][j]<<endl;
+            cout<<numberGrid[i][j];
         }
-
+        cout << endl;
     }
 
 }
