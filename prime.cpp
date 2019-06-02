@@ -21,13 +21,15 @@ using namespace std;
 
 int main()
 {
-    int N, i;
+    int N, i, j;
     cout << "Enter the limit : " << endl;
     cin >> N;
-    for ( int i ; i <= N ; i++)
+    for ( int i = 2; i < N ; i++)
     {
-        if ( i % 2 != 0)
-            cout << i << " ";
+        for ( int j = 2; j <i; j++)
+        {
+
+        }
     }
     return 0;
 }
