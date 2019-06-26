@@ -122,10 +122,28 @@ int countxx(string s, char x){
     return count;
 }
 
+int actualwordguessing(string g){
+    vector <string> words;
+    ifstream file("./words.txt");
+    string line;
+    while (getline(file, line)) words.push_back(line);
+    list<string> word_list(words.begin(),words.end());
+
+    if (std::find(word_list.begin(), word_list.end(), g) != word_list.end()){
+        return 1;
+        //cout<<"You are correct, congratulations!"<<endl;
+        //exit(0);
+        }
+    else{
+        //cout<<"Sorry, this is incorrect as it is not an actual English word."<<endl;
+        //exit(0);
+        return 0;}
+    //return 0;
+}
 
 int actualword(string g){
     vector <string> words;
-    ifstream file("/./words.txt");
+    ifstream file("./words.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
     list<string> word_list(words.begin(),words.end());
@@ -234,10 +252,13 @@ void guessing(list<string> allwords, int trials){
 
         if (std::find(allwords.begin(), allwords.end(), guessed) != allwords.end())
         {
-            cout<<"Yes, this is a possible word!"<<endl;
-            allwords.remove(guessed);
-            listwordsguessed.push_back(guessed);
-        }
+            int res1 = actualwordguessing(guessed);
+            if(res1){
+                cout<<"You are correct, congratulations!"<<endl;
+                allwords.remove(guessed);
+                listwordsguessed.push_back(guessed);
+            } else
+                cout << "Sorry, not an actual word." << endl;}
         else if (std::find(listwordsguessed.begin(), listwordsguessed.end(), guessed) != listwordsguessed.end())
         {
             cout << "You have already guessed this word!" << endl;
@@ -378,7 +399,7 @@ int main () {
 
     else if(gameselection == 'h') {
         string chosenword = selectword();
-        cout << "Chosen word is " << chosenword << endl;
+        //cout << "Chosen word is " << chosenword << endl;
         transform(chosenword.begin(), chosenword.end(), chosenword.begin(), ::tolower);
         list<char> chosenwordlist(chosenword.begin(), chosenword.end());
         cout << "Welcome to the game 'Hangman'!" << endl;
